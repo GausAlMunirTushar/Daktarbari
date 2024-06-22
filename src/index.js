@@ -1,4 +1,4 @@
-import app from "./app.js";
+import app from "./app/app.js";
 
 const startServer = () => {
     const port = process.env.PORT || 4411; // Default port is 4411, can be overridden by environment variable

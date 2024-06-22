@@ -1,5 +1,5 @@
 {
-  "name": "Daktarbari Backend",
+  "name": "Daktarbari",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -7,13 +7,14 @@
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js",
-    "lint": "eslint --fix ./src/*.js"
+    "lint": "eslint --fix ./src/*.js",
+    "prepare": "husky"
   },
   "keywords": [
     "Daktarbari"
   ],
   "author": "Gaus Al Munir Tushar",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
@@ -27,6 +28,7 @@
     "@eslint/js": "^9.1.1",
     "eslint": "^9.1.1",
     "globals": "^15.1.0",
+    "husky": "^9.0.11",
     "prettier": "^3.2.5"
   }
 }
