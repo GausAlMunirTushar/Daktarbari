@@ -18,6 +18,7 @@ const updateUser = async (req, res) => {
         res.status(500).json({
             status: false,
             message: "Failed to update",
+            error: err.message,
         });
     }
 };

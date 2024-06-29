@@ -6,11 +6,11 @@ import {
     getAllUser,
 } from "../controllers/user.controller.js";
 
-const userRoute = express.Router();
+const router = express.Router();
 
-userRoute.get("/:id", getSingleUser);
-userRoute.get("/", getAllUser);
-userRoute.put("/:id", updateUser);
-userRoute.delete("/:id", deleteUser);
+router.get("/:id", getSingleUser);
+router.get("/", getAllUser);
+router.put("/:id", updateUser);
+router.delete("/:id", deleteUser);
 
-export default userRoute;
+export { router as userRoutes };
