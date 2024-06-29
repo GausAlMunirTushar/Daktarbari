@@ -41,7 +41,19 @@ const register = async (req, res) => {
                 gender,
                 role,
             });
-        } else {
+            
+        }else if (role === "admin") {
+            newUser = new User({
+                name,
+                email,
+                password: hashedPassword,
+                photo,
+                phone,
+                gender,
+                role,
+            });
+            
+        }  else {
             return res.status(400).json({
                 success: false,
                 message: "Invalid user role",
@@ -67,18 +79,10 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     const { email, password } = req.body;
     try {
-        let user;
-        // Assuming you have a `role` field in your user schema
-        const patient = await User.findOne({ email, role: "patient" });
-        const doctor = await User.findOne({ email, role: "doctor" });
+        // Find user by email and role in one query
+        const user = await User.findOne({ email })
 
-        if (patient) {
-            user = patient;
-        } else if (doctor) {
-            user = doctor;
-        }
-
-        // check if user not found
+        // Check if user exists
         if (!user) {
             return res.status(404).json({
                 status: false,
@@ -86,7 +90,7 @@ const login = async (req, res) => {
             });
         }
 
-        // compare password
+        // Compare password
         const isPasswordMatch = await bcrypt.compare(password, user.password);
         if (!isPasswordMatch) {
             return res.status(400).json({
@@ -95,18 +99,19 @@ const login = async (req, res) => {
             });
         }
 
-        //generate token
-        const token = generateToken(user);
+        // Remove sensitive information from user object
+        delete user.password;
 
-        const { _id, name, role, appointments } = user._doc;
+        // Generate token
+        const token = generateToken(user);
 
         res.status(200).json({
             status: true,
             message: "User login successful",
             token: token,
-            data: { _id, name, role, appointments }, // Send only necessary data, removing password for security
         });
     } catch (err) {
+        console.error("Login error:", err);
         res.status(500).json({
             status: false,
             message: "Failed to login",
