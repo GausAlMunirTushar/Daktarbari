@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import { getAllDoctors } from '../controllers/doctor.controller.js';
+import { createDoctor, deleteDoctor, getAllDoctors, updateDoctor } from '../controllers/doctor.controller.js';
 import { authenticate } from '../middlewares/auth.middleware.js';
 
 const router = Router();
 
 router.get('/', authenticate, getAllDoctors)
-router.post('/', )
+router.post('/', createDoctor )
 router.get('/:id', )
-router.put('/:id', )
-router.delete('/:id', )
+router.put('/:id', updateDoctor)
+router.delete('/:id', deleteDoctor)
 
 export { router as doctorRoutes }

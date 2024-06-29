@@ -9,12 +9,7 @@ const doctorSchema = new Schema({
     },
     email: {
         type: String,
-        required: [true, "Email is required"],
         unique: true,
-    },
-    password: {
-        type: String,
-        required: [true, "Password is required"],
     },
     phone: {
         type: String, // Changed to string to accommodate international numbers
