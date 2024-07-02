@@ -1,10 +1,9 @@
 import User from "../models/user.model.js";
-import Doctor from "../models/doctor.model.js";
 import bcrypt from "bcryptjs";
 import generateToken from "../utils/generateToken.js";
 
 const register = async (req, res) => {
-    const { name, email, password, role, gender, photo, phone } = req.body;
+    const { username, email, password, role, gender } = req.body;
 
     try {
         // Check if user already exists
@@ -20,46 +19,14 @@ const register = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        let newUser;
-        if (role === "patient") {
-            newUser = new User({
-                name,
-                email,
-                password: hashedPassword,
-                photo,
-                phone,
-                gender,
-                role,
-            });
-        } else if (role === "doctor") {
-            newUser = new Doctor({
-                name,
-                email,
-                password: hashedPassword,
-                photo,
-                phone,
-                gender,
-                role,
-            });
-            
-        }else if (role === "admin") {
-            newUser = new User({
-                name,
-                email,
-                password: hashedPassword,
-                photo,
-                phone,
-                gender,
-                role,
-            });
-            
-        }  else {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid user role",
-            });
-        }
-
+        let newUser;    
+        newUser = new User({
+            username,
+            email,
+            password: hashedPassword,
+            role,
+            gender,
+        });
         await newUser.save();
 
         res.status(201).json({
