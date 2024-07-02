@@ -2,6 +2,10 @@ import mongoose, { Schema } from "mongoose";
 
 const doctorSchema = new Schema(
     {
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
         name: {
             type: String,
             required: true,
@@ -42,7 +46,7 @@ const doctorSchema = new Schema(
                 type: Schema.Types.ObjectId,
                 ref: "Appointment",
             },
-        ],
+        ]
     },
     {
         versionKey: false,
