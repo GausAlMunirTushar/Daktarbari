@@ -4,15 +4,15 @@ const Schema = mongoose.Schema;
 
 const appointmentSchema = new Schema(
     {
+        patient: {
+            type: Schema.Types.ObjectId,
+            required: true,
+            ref: "Patient",
+        },
         doctor: {
             type: Schema.Types.ObjectId,
             required: true,
             ref: "Doctor",
-        },
-        user: {
-            type: Schema.Types.ObjectId,
-            required: true,
-            ref: "User",
         },
         ticketPrice: {
             type: String,
@@ -22,10 +22,14 @@ const appointmentSchema = new Schema(
             type: Date,
             required: true,
         },
+        timeSlot: {
+            type: String,
+            required: true,
+        },
         status: {
             type: String,
-            enum: ["pending", "approved", "cancelled"],
-            default: "pending",
+            enum: ['scheduled', 'completed', 'cancelled'],
+            default: 'scheduled',
         },
         isPaid: {
             type: Boolean,

@@ -2,6 +2,10 @@ import mongoose, { Schema } from "mongoose";
 
 const patientSchema = new Schema(
     {
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
         name: {
             type: String,
             required: true,
@@ -9,11 +13,6 @@ const patientSchema = new Schema(
         dateOfBirth: {
             type: String,
             required: [true, "Birthdate is Required"],
-        },
-        gender: {
-            type: String,
-            required: true,
-            enum: ["male", "female", "others"],
         },
         appointments: [
             {
