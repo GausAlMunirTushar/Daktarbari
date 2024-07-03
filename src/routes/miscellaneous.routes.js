@@ -16,4 +16,5 @@ router.get('/appointments/search', authenticate, authorize(['doctor', 'admin']),
 router.get('/doctors/:doctorId/available-slots', authenticate, authorize(['doctor', 'admin']), listAvailableSlots);
 router.post('/feedback/patients/:patientId', authenticate, authorize(['doctor', 'admin']), requestFeedback);
 
+
 export { router as miscellaneousRoutes };

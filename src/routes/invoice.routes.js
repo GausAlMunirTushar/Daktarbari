@@ -11,10 +11,10 @@ import authorize from '../middlewares/authorize.js';
 
 const router = Router();
 
-router.get('/invoices', authenticate, authorize(['admin']), listAllInvoices);
-router.get('/invoices/:id', authenticate, authorize(['admin']), getInvoiceById);
-router.post('/invoices', authenticate, authorize(['admin']), generateInvoice);
-router.put('/invoices/:id', authenticate, authorize(['admin']), updateInvoice);
-router.delete('/invoices/:id', authenticate, authorize(['admin']), deleteInvoice);
+router.get('/', authenticate, authorize(['admin']), listAllInvoices);
+router.get('/:id', authenticate, authorize(['admin']), getInvoiceById);
+router.post('/', authenticate, authorize(['admin']), generateInvoice);
+router.put('/:id', authenticate, authorize(['admin']), updateInvoice);
+router.delete('/:id', authenticate, authorize(['admin']), deleteInvoice);
 
 export { router as invoiceRoutes };

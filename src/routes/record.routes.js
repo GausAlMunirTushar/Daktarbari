@@ -4,7 +4,7 @@ import {
     addMedicalRecord,
     updateMedicalRecord,
     deleteMedicalRecord,
-} from '../controllers/medicalRecord.controller.js';
+} from '../controllers/record.controller.js';
 import { authenticate } from '../middlewares/auth.middleware.js';
 import authorize from '../middlewares/authorize.js';
 
